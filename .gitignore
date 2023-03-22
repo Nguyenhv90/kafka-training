@@ -5,3 +5,8 @@
 /spring-kafka/mvnw
 /spring-kafka/.mvn/wrapper
 /spring-kafka/mvnw.cmd
+/chat-ui/package-lock.json
+/realtime-chat-app/.mvn/wrapper/maven-wrapper.jar
+/realtime-chat-app/.mvn/wrapper
+/realtime-chat-app/mvnw
+/realtime-chat-app/mvnw.cmd
