@@ -26,22 +26,26 @@ public class ChatController {
     public void sendMessage(@RequestBody Message message) {
         message.setTimestamp(LocalDateTime.now().toString());
         try {
+            System.out.println("Gửi tin nhắn, send vào kafka");
             kafkaTemplate.send(KafkaConstants.KAFKA_TOPIC, message).get();
         } catch (InterruptedException | ExecutionException e) {
             throw new RuntimeException();
         }
     }
 
-    @MessageMapping("/sendMessage")
-    @SendTo("/topic/group")
-    public Message broadcastGroupMessage(@Payload Message message) {
-        return message;
-    }
-
-    @MessageMapping("/newUser")
-    @SendTo("/topic/group")
-    public Message addUser(@Payload Message message, SimpMessageHeaderAccessor headerAccessor) {
-        headerAccessor.getSessionAttributes().put("username", message.getSender());
-        return message;
-    }
+//    @MessageMapping("/sendMessage")
+//    @SendTo("/topic/group")
+//    public Message broadcastGroupMessage(@Payload Message message) {
+//        System.out.println("Nhận tin tại broadcast");
+//        return message;
+//    }
+//
+//    @MessageMapping("/newUser")
+//    @SendTo("/topic/group")
+//    public Message addUser(@Payload Message message, SimpMessageHeaderAccessor headerAccessor) {
+//        System.out.println("Load message "+ message);
+//        headerAccessor.getSessionAttributes().put("username", message.getSender());
+//        System.out.println("Load message "+ headerAccessor);
+//        return message;
+//    }
 }

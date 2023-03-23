@@ -14,7 +14,9 @@ public class MessageListener {
 
     @KafkaListener(topics = KafkaConstants.KAFKA_TOPIC, groupId = KafkaConstants.GROUP_ID)
     public void listen(Message message) {
-        System.out.println("sending via kafka listener..");
+        System.out.println("...");
+        // Ở đây, kafka nhận tin nhắn từ bên send và hiển thị ở đây
+        //Sau đó, dùng SimpMessagingTemplate gửi tin nhắn vào group
         template.convertAndSend("/topic/group", message);
     }
 }
